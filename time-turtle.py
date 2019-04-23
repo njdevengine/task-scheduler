@@ -17,7 +17,7 @@ print(r"""
 """)
 #start by checking if its Saturday or Sunday
 #if it is calc seconds till 9am next business day and sleep
-
+n=0
 def task(x,path):
 # check if its Saturday
     a = datetime.datetime.now()
@@ -74,8 +74,11 @@ def task(x,path):
         else:
             print(datetime.datetime.now())
             print("No Changes Found! Sleeping 15...")
-            time.sleep(60*15)
-
-running = True
-while running == True:
+  global n
+  n+=1
+  print("Run num:",n)
+  
+while True:
     task('python my_script.py',r'F:your\file\directory\to\check\for\changes\\')
+    time.sleep(60*15)
+
