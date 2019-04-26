@@ -1,4 +1,4 @@
-## Time Turtle Task Scheduler :alarm_clock:
+## Time Turtle Task Scheduler :alarm_clock: :turtle:
 
 ![turtle time](time.png)
 
@@ -12,4 +12,4 @@
 #put me in the while loop to add scripts
 task('task name string',r'path:to\changes\\','python script_filename.py')
 ```
-Happy Automating!
+Happy Automating! :computer:
