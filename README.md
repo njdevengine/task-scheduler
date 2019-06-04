@@ -17,6 +17,6 @@ Time Turtle will see the changes in modified date timestamps and execute differe
 
 ```
 #put me in the while loop to add scripts
-task('task name string',r'path:to\changes\\','python script_filename.py')
+task('c','task name string','python script_filename.py',r'path:to\changes\\')
 ```
 Happy Automating! :computer:
