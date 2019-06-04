@@ -1,6 +1,11 @@
 import time
 import datetime
 import os
+from flask import Flask
+
+app = Flask(__name__)
+@app.route("/")
+
 print(r"""
   _   _                _              _   _      
  | | (_)              | |            | | | |     
