@@ -17,12 +17,8 @@ print(r"""
 """)
 #start by checking if its Saturday or Sunday
 #if it is calc seconds till 9am next business day and sleep
-n=0
-old_timestamps_a = "start"
-old_timestamps_b = "start"
 
-def task_a(name,x,path):
-    global old_timestamps_a
+def task(letter,name,command,path):
 # check if its Saturday
     print(name)
     a = datetime.datetime.now()
@@ -65,84 +61,35 @@ def task_a(name,x,path):
             y = time.gmtime(z)
             a = time.strftime("%m/%d/%Y %H:%M:%S",y)
             new_timestamps.append(a)
+        new_timestamps = " ".join(new_timestamps)
 #if there is an update run the script, else sleep
-            print(old_timestamps_a,"current")
-            print(new_timestamps,"new")
-        if old_timestamps_a != new_timestamps:
-            print(datetime.datetime.now())
-            print("****Update Found!**** Running Script...")
-            os.system(x)
-            old_timestamps_a = new_timestamps
+#get the last known timestamp from the notepad file
+        file = "test_"+str(letter)+".txt"
+        with open(file, "rb") as f:
+            first = f.readline()        # Read the first line.
+            f.seek(-2, os.SEEK_END)     # Jump to the second last byte.
+            while f.read(1) != b"\n":   # Until EOL is found...
+                f.seek(-2, os.SEEK_CUR) # ...jump back the read byte plus one more.
+            last = f.readline()         # Read last line.
+            old_timestamps = last.decode()
+        print(old_timestamps,"current")
+        print(new_timestamps,"new")
+#check for differences
+        if old_timestamps != new_timestamps:
+#             print(datetime.datetime.now())
+#             print("****Update Found!**** Running Script...")
+            os.system(command)
+            old_timestamps = new_timestamps
+            with open("test_"+str(letter)+".txt", "a") as f:
+                f.write("\n")
+                f.write(str(name),"****Update Found!**** Running Script...",str(datetime.datetime.now()))
+                f.write("\n")
+                f.write(" ".join(new_timestamps))
         else:
             print(datetime.datetime.now())
             print("No Changes Found! Sleeping 15...")
-    global n
-    n+=1
-    print("Run num:",n)
-    print("\n")
-    
-#############################################################################################
-def task_b(name,x,path):
-    global old_timestamps_b
-# check if its Saturday
-    print(name)
-    a = datetime.datetime.now()
-    if a.isoweekday() == 6:
-        a += datetime.timedelta(days=2)
-        a = a.replace(hour=9,minute=0,second=0,microsecond=0)
-        now = datetime.datetime.now()
-        c = a - now
-        wait_time = c.seconds
-        print('Its Saturday... sleeping',wait_time,"seconds...")
-        time.sleep(wait_time)
-#check if its Sunday
-    elif a.isoweekday() == 7:
-        a += datetime.timedelta(days=1)
-        a = a.replace(hour=9,minute=0,second=0,microsecond=0)
-        now = datetime.datetime.now()
-        c = a - now
-        wait_time = c.seconds
-        print('Its Sunday... sleeping',wait_time,"seconds...")
-        time.sleep(wait_time)
-#check if its work hours
-    now = datetime.datetime.today().time()
-    work_hours = [9,10,11,12,13,14,15,16,17]
-    if now.hour not in work_hours:
-        a = datetime.datetime.now()
-        a += datetime.timedelta(days=1)
-        a = a.replace(hour=9,minute=0,second=0,microsecond=0)
-        now = datetime.datetime.now()
-        c = a - now
-        wait_time = c.seconds
-        print(datetime.datetime.now())
-        print("Its not time to work... sleeping",wait_time,"seconds...")
-        time.sleep(wait_time)
-#check for changes in file modification timestamps
-    else:
-        print("Checking for Changes...")
-        new_timestamps = []
-        for i in os.listdir(path):
-            z = os.stat(path+i).st_mtime
-            y = time.gmtime(z)
-            a = time.strftime("%m/%d/%Y %H:%M:%S",y)
-            new_timestamps.append(a)
-#if there is an update run the script, else sleep
-            print(old_timestamps_b,"current")
-            print(new_timestamps,"new")
-        if old_timestamps_b != new_timestamps:
-            print(datetime.datetime.now())
-            print("****Update Found!**** Running Script...")
-            os.system(x)
-            old_timestamps_b = new_timestamps
-        else:
-            print(datetime.datetime.now())
-            print("No Changes Found! Sleeping 15...")
-    global n
-    n+=1
-    print("Run num:",n)
-    print("\n")
 #############################################################################################
 while True:
-    task_a('clean snake','python my_script1.py',r'F:your\file\directory\to\check\for\changes\\')
-    task_b('sales snake','python my_script2.py',r'F:your_other\file\directory\to\check\for\changes\\')
+    task('a','clean snake','python my_script1.py',r'F:\your\file\directory\to\check\for\changes\\')
+    task('b','sales snake','python my_script2.py',r'F:\your_other\file\directory\to\check\for\changes\\')
     time.sleep(60*15)
