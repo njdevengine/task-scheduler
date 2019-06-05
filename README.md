@@ -7,6 +7,10 @@ I also made it so that others can trigger my code without knowing Python.
 They can drop a file to be checked against our database in a shared drive folder.
 Time Turtle will see the changes in modified date timestamps and execute different scripts.
 
+# Why did I write time turtle?
+Well I found myself trying to automate more and more things i.e. webscrapers/data gathering/visualizations/data scrubbing etc.
+I heard good programmers are lazy, very lazy, so I wrote a script to run my scripts.
+
 ![turtle time](time.png)
 
 ## Script is best run on a server or localhost
