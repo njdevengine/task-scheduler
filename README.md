@@ -10,9 +10,9 @@ Time Turtle will see the changes in modified date timestamps and execute differe
 ![turtle time](time.png)
 
 ## Script is best run on a server or localhost
-* I ran my code in Jupyter Notebook so its always running.
+* Program is currently configured so that it is run by a bat file, this allows us to run the program in a flask server.
 * Sniffs for changes and conditions including whether or not its a workday/workhour.
-* Executes multiple scripts on a fifteen minute timer.
+* Executes multiple scripts on a fifteen minute timer. (i.e. sleeps 60x15 seconds, can be changed to run more or less often)
 * Calculates time until next workday at 6pm and Weekends and sleeps til then.
 
 ```
