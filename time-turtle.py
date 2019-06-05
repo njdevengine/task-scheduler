@@ -88,7 +88,7 @@ def task(letter,name,command,path):
             old_timestamps = new_timestamps
             with open("test_"+str(letter)+".txt", "a") as f:
                 f.write("\n")
-                f.write(str(name),"****Update Found!**** Running Script...",str(datetime.datetime.now()))
+                f.write(str(name)+"****Update Found!**** Running Script..."+str(datetime.datetime.now()))
                 f.write("\n")
                 f.write(" ".join(new_timestamps))
         else:
