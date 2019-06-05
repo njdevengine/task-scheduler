@@ -24,4 +24,10 @@ I heard good programmers are lazy, very lazy, so I wrote a script to run my scri
 #put me in the while loop to add scripts
 task('c','task name string','python script_filename.py',r'path:to\changes\\')
 ```
+I believe if you are running on mac instead of the bat file you could write at the top of the file:
+I am curious to run the program in this way but I have not tested it.
+```
+os.system("set FLASK_APP=time_turtle.py")
+os.system("flask run")
+```
 Happy Automating! :computer:
