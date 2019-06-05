@@ -18,6 +18,7 @@ I heard good programmers are lazy, very lazy, so I wrote a script to run my scri
 * Sniffs for changes and conditions including whether or not its a workday/workhour.
 * Executes multiple scripts on a fifteen minute timer. (i.e. sleeps 60x15 seconds, can be changed to run more or less often)
 * Calculates time until next workday at 6pm and Weekends and sleeps til then.
+* test_a and b files are the log files, the last run time gets appended to the file, this allows for persistence across reboots.
 
 ```
 #put me in the while loop to add scripts
