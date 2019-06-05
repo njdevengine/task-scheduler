@@ -90,7 +90,7 @@ def task(letter,name,command,path):
                 f.write("\n")
                 f.write(str(name)+"****Update Found!**** Running Script..."+str(datetime.datetime.now()))
                 f.write("\n")
-                f.write(" ".join(new_timestamps))
+                f.write(new_timestamps)
         else:
             print(datetime.datetime.now())
             print("No Changes Found! Sleeping 15...")
